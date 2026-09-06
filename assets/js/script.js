@@ -11,11 +11,7 @@ const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
 
-const savedTheme = localStorage.getItem("priangan-theme");
-const preferredTheme = window.matchMedia("(prefers-color-scheme: light)")
-  .matches
-  ? "light"
-  : "dark";
+const savedTheme = localStorage.getItem("priangan-retro-theme");
 
 function applyTheme(theme) {
   root.dataset.theme = theme;
@@ -23,15 +19,15 @@ function applyTheme(theme) {
     "aria-label",
     `Switch to ${theme === "dark" ? "light" : "dark"} theme`,
   );
-  themeColor.setAttribute("content", theme === "dark" ? "#101413" : "#e9e5d8");
+  themeColor.setAttribute("content", theme === "dark" ? "#171717" : "#f4e51c");
 }
 
-applyTheme(savedTheme || preferredTheme);
+applyTheme(savedTheme || "light");
 
 themeButton.addEventListener("click", () => {
   const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
   applyTheme(nextTheme);
-  localStorage.setItem("priangan-theme", nextTheme);
+  localStorage.setItem("priangan-retro-theme", nextTheme);
 });
 
 menuButton.addEventListener("click", () => {
