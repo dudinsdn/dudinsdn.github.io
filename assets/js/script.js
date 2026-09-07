@@ -49,12 +49,9 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
   revealElements.forEach((element) => element.classList.add("visible"));
 } else {
   const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
+        entry.target.classList.toggle("visible", entry.isIntersecting);
       });
     },
     { threshold: 0.12 },
