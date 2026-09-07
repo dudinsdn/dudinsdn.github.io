@@ -1,58 +1,345 @@
 @media (max-width: 1220px) {
-  .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
-  .signal-map { --resting-rotate: 0deg; grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; gap: 16px 24px; transform: none; }
-  .signal-map .route-stages { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
-  .signal-map .route-line { display: none; }
-  .signal-map .waveform { align-self: center; }
-  .field-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+  .signal-map {
+    --resting-rotate: 0deg;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px 24px;
+  }
+  .signal-map.reveal {
+    --reveal-y: 34px;
+    --reveal-scale: 0.97;
+  }
+  .signal-map .route-stages {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .signal-map .route-line {
+    display: none;
+  }
+  .signal-map .waveform {
+    align-self: center;
+  }
+  .field-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 781px) and (max-width: 1220px) {
+  .signal-map.reveal .route-stages li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 380ms ease,
+      transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .signal-map.reveal.visible .route-stages li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(1) {
+    transition-delay: 220ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(2) {
+    transition-delay: 330ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(3) {
+    transition-delay: 440ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(4) {
+    transition-delay: 550ms;
+  }
+  .signal-map.reveal.visible .stage-icon {
+    animation: mobile-stage-pulse 4.8s ease-in-out 1s infinite;
+  }
+  .signal-map.reveal.visible li:nth-child(2) .stage-icon {
+    animation-delay: 1.25s;
+  }
+  .signal-map.reveal.visible li:nth-child(3) .stage-icon {
+    animation-delay: 1.5s;
+  }
+  .signal-map.reveal.visible li:nth-child(4) .stage-icon {
+    animation-delay: 1.75s;
+  }
 }
 
 @media (max-width: 780px) {
-  :root { --rail: 0px; }
-  .rail { position: sticky; top: 0; width: 100%; height: 72px; flex-direction: row; border-right: 0; border-bottom: 4px solid var(--ink); }
-  .rail-logo { width: 116px; height: 100%; border: 0; border-right: 4px solid var(--ink); }
-  .rail-footer { display: none; }
-  .menu-toggle { display: grid; width: 72px; height: 68px; margin-left: auto; place-content: center; gap: 7px; border: 0; border-left: 4px solid var(--ink); background: var(--yellow); cursor: pointer; }
-  .menu-toggle > span:not(.sr-only) { display: block; width: 30px; height: 4px; background: #171717; }
-  .rail-nav { position: fixed; inset: 72px 0 auto; display: none; padding: 10px; color: #171717; background: var(--yellow); border-bottom: 4px solid #171717; }
-  .rail-nav.open { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .rail-link { min-height: 62px; border: 2px solid #171717; }
-  .rail-link:nth-child(even):hover, .rail-link:nth-child(even).active { color: #171717; }
-  main { margin-left: 0; }
-  .section { padding: 66px 20px; }
-  .hero { padding-top: 22px; }
-  .hero-grid { grid-template-columns: 1fr; padding-top: 38px; }
-  .hero-copy { padding-bottom: 15px; }
-  h1 { font-size: clamp(52px, 15vw, 82px); }
-  .title-strip { padding-right: 10px; padding-left: 10px; }
-  .title-strip-alt { max-width: calc(100% - 10px); margin-left: 10px; }
-  .hero-sticker { right: 4px; bottom: -92px; width: 100px; height: 100px; }
-  .portrait-panel { max-width: 430px; margin: 45px auto 0; }
-  .signal-map { display: block; }
-  .signal-map .route-stages { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .signal-map .waveform { margin-top: 14px; }
-  .section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
-  .section-heading h2, .contact h2 { font-size: clamp(50px, 16vw, 82px); }
-  .field-grid { grid-template-columns: 1fr; }
-  .field-card { min-height: auto; }
-  .field-card p { min-height: auto; }
-  .work-row { grid-template-columns: 44px 1fr 34px; gap: 10px; }
-  .work-type { display: none; }
-  .method, .contact-grid { grid-template-columns: 1fr; }
-  .method { padding: 22px; }
-  footer { margin-top: 72px; flex-direction: column; gap: 12px; }
+  :root {
+    --rail: 0px;
+  }
+  .rail {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 72px;
+    flex-direction: row;
+    border-right: 0;
+    border-bottom: 4px solid var(--ink);
+  }
+  .rail-logo {
+    width: 116px;
+    height: 100%;
+    border: 0;
+    border-right: 4px solid var(--ink);
+  }
+  .rail-footer {
+    display: block;
+    width: 68px;
+    height: 68px;
+    flex: 0 0 68px;
+    padding: 0;
+    border-top: 0;
+    border-left: 4px solid var(--ink);
+  }
+  .rail-footer .theme-toggle {
+    height: 100%;
+  }
+  .rail-footer .live-signal {
+    display: none;
+  }
+  .menu-toggle {
+    display: grid;
+    width: 72px;
+    height: 68px;
+    margin-left: auto;
+    place-content: center;
+    gap: 7px;
+    border: 0;
+    border-left: 4px solid var(--ink);
+    background: var(--yellow);
+    cursor: pointer;
+  }
+  .menu-toggle > span:not(.sr-only) {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #171717;
+  }
+  .rail-nav {
+    position: fixed;
+    inset: 72px 0 auto;
+    display: none;
+    padding: 10px;
+    color: #171717;
+    background: var(--yellow);
+    border-bottom: 4px solid #171717;
+  }
+  .rail-nav.open {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rail-link {
+    min-height: 62px;
+    border: 2px solid #171717;
+  }
+  .rail-link:nth-child(even):hover,
+  .rail-link:nth-child(even).active {
+    color: #171717;
+  }
+  main {
+    margin-left: 0;
+  }
+  .section {
+    padding: 66px 20px;
+  }
+  .hero {
+    padding-top: 22px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding-top: 38px;
+  }
+  .hero-copy {
+    padding-bottom: 15px;
+  }
+  h1 {
+    font-size: clamp(52px, 15vw, 82px);
+  }
+  .title-strip {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .title-strip-alt {
+    max-width: calc(100% - 10px);
+    margin-left: 10px;
+  }
+  .hero-sticker {
+    right: 4px;
+    bottom: -92px;
+    width: 100px;
+    height: 100px;
+  }
+  .portrait-panel {
+    max-width: 430px;
+    margin: 45px auto 0;
+  }
+  .signal-map {
+    display: block;
+  }
+  .signal-map.reveal {
+    --reveal-y: 48px;
+    --reveal-scale: 0.94;
+    transition:
+      opacity 520ms ease,
+      transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .signal-map.reveal .map-head,
+  .signal-map.reveal .route-stages li,
+  .signal-map.reveal .waveform,
+  .signal-map.reveal > p {
+    opacity: 0;
+    transition:
+      opacity 380ms ease,
+      transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .signal-map.reveal .map-head {
+    transform: translateY(-14px);
+  }
+  .signal-map.reveal .route-stages li {
+    transform: translateX(-26px);
+  }
+  .signal-map.reveal .route-stages li:nth-child(even) {
+    transform: translateX(26px);
+  }
+  .signal-map.reveal .waveform {
+    transform: scaleX(0.12);
+    transform-origin: left center;
+  }
+  .signal-map.reveal > p {
+    transform: translateY(12px);
+  }
+  .signal-map.reveal.visible .map-head,
+  .signal-map.reveal.visible .route-stages li,
+  .signal-map.reveal.visible .waveform,
+  .signal-map.reveal.visible > p {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  .signal-map.reveal.visible .map-head {
+    transition-delay: 180ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(1) {
+    transition-delay: 260ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(2) {
+    transition-delay: 370ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(3) {
+    transition-delay: 480ms;
+  }
+  .signal-map.reveal.visible .route-stages li:nth-child(4) {
+    transition-delay: 590ms;
+  }
+  .signal-map.reveal.visible .waveform {
+    transition-delay: 700ms;
+  }
+  .signal-map.reveal.visible > p {
+    transition-delay: 780ms;
+  }
+  .signal-map.reveal.visible .stage-icon {
+    animation: mobile-stage-pulse 4.8s ease-in-out 1.1s infinite;
+  }
+  .signal-map.reveal.visible li:nth-child(2) .stage-icon {
+    animation-delay: 1.35s;
+  }
+  .signal-map.reveal.visible li:nth-child(3) .stage-icon {
+    animation-delay: 1.6s;
+  }
+  .signal-map.reveal.visible li:nth-child(4) .stage-icon {
+    animation-delay: 1.85s;
+  }
+  .signal-map .route-stages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .signal-map .waveform {
+    margin-top: 14px;
+  }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .section-heading h2,
+  .contact h2 {
+    font-size: clamp(50px, 16vw, 82px);
+  }
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+  .field-card {
+    min-height: auto;
+  }
+  .field-card p {
+    min-height: auto;
+  }
+  .work-row {
+    grid-template-columns: 44px 1fr 34px;
+    gap: 10px;
+  }
+  .work-type {
+    display: none;
+  }
+  .experiment-placeholder-body {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .experiment-placeholder h3 {
+    font-size: clamp(66px, 19vw, 108px);
+  }
+  .experiment-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .method,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .method {
+    padding: 22px;
+  }
+  footer {
+    margin-top: 72px;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 @media (max-width: 460px) {
-  .coordinate { display: none; }
-  .hero::after { width: 80vw; }
-  .hero-actions { align-items: stretch; flex-direction: column; }
-  .button { width: 100%; }
-  .signal-map .route-stages { grid-template-columns: 1fr; }
-  .contact-console dl > div { grid-template-columns: 1fr; gap: 4px; }
+  .coordinate {
+    display: none;
+  }
+  .hero::after {
+    width: 80vw;
+  }
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .button {
+    width: 100%;
+  }
+  .signal-map .route-stages {
+    grid-template-columns: 1fr;
+  }
+  .contact-console dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
