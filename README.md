@@ -23,3 +23,9 @@ or serve the directory with any static file server.
 
 Contact details and featured work are maintained in `index.html`.
 Theme behavior, navigation, scroll reveals, and the WIB clock live in `assets/js/script.js`.
+
+CSS is organized by responsibility:
+
+- `assets/css/style.css` contains the visual foundation, layout, and components.
+- `assets/css/animations.css` contains reveal behavior and keyframes.
+- `assets/css/responsive.css` contains breakpoints and reduced-motion overrides.

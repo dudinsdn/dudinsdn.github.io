@@ -1,0 +1,68 @@
+.reveal {
+  --reveal-x: 0px;
+  --reveal-y: 18px;
+  --reveal-scale: 1;
+  opacity: 0;
+  transform: translate(var(--reveal-x), var(--reveal-y)) rotate(var(--resting-rotate, 0deg)) scale(var(--reveal-scale));
+  transition: opacity 500ms ease, transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(var(--resting-rotate, 0deg)) scale(1);
+}
+
+@keyframes blink { 50% { opacity: 0.25; } }
+@keyframes scan { from { transform: translateY(-50%); } to { transform: translateY(50%); } }
+@keyframes portrait-scan-reveal {
+  0% { clip-path: inset(0 0 100% 0); }
+  50% { clip-path: inset(0 0 0 0); }
+  100% { clip-path: inset(100% 0 0 0); }
+}
+@keyframes route { from { top: 0; } to { top: calc(100% - 14px); } }
+@keyframes wave { to { height: 27px; } }
+@keyframes signal-beam { 50% { opacity: 0.38; } }
+@keyframes data-flow { to { stroke-dashoffset: -20; } }
+@keyframes node-pulse { 50% { transform: scale(1.22); } }
+@keyframes tool-float { 50% { transform: translate(-2px, -4px) rotate(-2deg); } }
+@keyframes title-strip-enter {
+  0% {
+    opacity: 0;
+    transform: translate(-34px, 28px) rotate(calc(var(--strip-angle) - 4deg)) scale(0.92);
+  }
+  68% {
+    opacity: 1;
+    transform: translate(5px, -2px) rotate(calc(var(--strip-angle) + 0.8deg)) scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(var(--strip-angle)) scale(1);
+  }
+}
+@keyframes title-strip-drift {
+  0%, 100% { transform: translate(0, 0) rotate(var(--strip-angle)); }
+  50% { transform: translate(2px, -3px) rotate(calc(var(--strip-angle) + 0.35deg)); }
+}
+@keyframes title-strip-sweep {
+  0%, 56% { transform: translateX(-260%) skewX(-14deg); }
+  76%, 100% { transform: translateX(720%) skewX(-14deg); }
+}
+@keyframes title-signal-blip {
+  0%, 55%, 76%, 100% { opacity: 0; transform: scale(0.45) rotate(0); }
+  58%, 71% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+@keyframes accent-sweep {
+  0%, 58% { transform: translateX(-260%) skewX(-16deg); }
+  76%, 100% { transform: translateX(720%) skewX(-16deg); }
+}
+@keyframes symbol-float {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  50% { transform: translate(-2px, -4px) rotate(-5deg); }
+}
+@keyframes sticker-float {
+  0%, 100% { transform: translate(0, 0) rotate(9deg); }
+  50% { transform: translate(-3px, -7px) rotate(5deg); }
+}
+@keyframes console-scan {
+  0%, 58% { left: -22%; }
+  78%, 100% { left: 112%; }
+}

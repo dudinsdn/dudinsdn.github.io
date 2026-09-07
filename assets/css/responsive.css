@@ -1,0 +1,58 @@
+@media (max-width: 1220px) {
+  .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
+  .signal-map { --resting-rotate: 0deg; grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; gap: 16px 24px; transform: none; }
+  .signal-map .route-stages { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
+  .signal-map .route-line { display: none; }
+  .signal-map .waveform { align-self: center; }
+  .field-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 780px) {
+  :root { --rail: 0px; }
+  .rail { position: sticky; top: 0; width: 100%; height: 72px; flex-direction: row; border-right: 0; border-bottom: 4px solid var(--ink); }
+  .rail-logo { width: 116px; height: 100%; border: 0; border-right: 4px solid var(--ink); }
+  .rail-footer { display: none; }
+  .menu-toggle { display: grid; width: 72px; height: 68px; margin-left: auto; place-content: center; gap: 7px; border: 0; border-left: 4px solid var(--ink); background: var(--yellow); cursor: pointer; }
+  .menu-toggle > span:not(.sr-only) { display: block; width: 30px; height: 4px; background: #171717; }
+  .rail-nav { position: fixed; inset: 72px 0 auto; display: none; padding: 10px; color: #171717; background: var(--yellow); border-bottom: 4px solid #171717; }
+  .rail-nav.open { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .rail-link { min-height: 62px; border: 2px solid #171717; }
+  .rail-link:nth-child(even):hover, .rail-link:nth-child(even).active { color: #171717; }
+  main { margin-left: 0; }
+  .section { padding: 66px 20px; }
+  .hero { padding-top: 22px; }
+  .hero-grid { grid-template-columns: 1fr; padding-top: 38px; }
+  .hero-copy { padding-bottom: 15px; }
+  h1 { font-size: clamp(52px, 15vw, 82px); }
+  .title-strip { padding-right: 10px; padding-left: 10px; }
+  .title-strip-alt { max-width: calc(100% - 10px); margin-left: 10px; }
+  .hero-sticker { right: 4px; bottom: -92px; width: 100px; height: 100px; }
+  .portrait-panel { max-width: 430px; margin: 45px auto 0; }
+  .signal-map { display: block; }
+  .signal-map .route-stages { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .signal-map .waveform { margin-top: 14px; }
+  .section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .section-heading h2, .contact h2 { font-size: clamp(50px, 16vw, 82px); }
+  .field-grid { grid-template-columns: 1fr; }
+  .field-card { min-height: auto; }
+  .field-card p { min-height: auto; }
+  .work-row { grid-template-columns: 44px 1fr 34px; gap: 10px; }
+  .work-type { display: none; }
+  .method, .contact-grid { grid-template-columns: 1fr; }
+  .method { padding: 22px; }
+  footer { margin-top: 72px; flex-direction: column; gap: 12px; }
+}
+
+@media (max-width: 460px) {
+  .coordinate { display: none; }
+  .hero::after { width: 80vw; }
+  .hero-actions { align-items: stretch; flex-direction: column; }
+  .button { width: 100%; }
+  .signal-map .route-stages { grid-template-columns: 1fr; }
+  .contact-console dl > div { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
